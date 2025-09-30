@@ -14,56 +14,64 @@ body {
   font-family: Arial, sans-serif;
   cursor: pointer;
   text-align: center;
+  background-color: white;
+  color: black;
 }
 img {
-  max-width: 25%;
+  width: 25%;
   height: auto;
-  border-radius: 10px;
   display: none; /* hidden initially */
-  margin-top: 20px;
+  margin: 20px 0 10px 0;
 }
-.credit {
-  margin-top: 10px;
-  font-size: 0.9em;
-  opacity: 0.8;
+h2 {
   display: none; /* hidden initially */
+  margin: 0;
+}
+.bottom-text {
+  display: none; /* hidden initially */
+  font-size: 1em;
+  margin-top: 10px;
 }
 .click-text {
   font-size: 1.5em;
-  opacity: 0.9;
 }
 </style>
 </head>
 <body>
 
-<div class="click-text">click to reveal secret.</div>
+<div class="click-text">click to reveal mystery</div>
 
-<!-- Your hidden image and credit -->
-<img id="magicImage" src="mystery_croc.jpg" alt="Magic Picture">
-<div class="credit" id="creditText">"Don't worry, be happy" <br> made by jrel</div>
+<h2 id="topText">this is greg.</h2>
 
-<!-- Music -->
+<img id="magicImage" src="greg.jpg" alt="Greg">
+
+<div class="bottom-text" id="bottomText">
+  greg wanted to cheer you up with his favorite song. <br>
+  say thanks greg!
+</div>
+
 <audio id="bgmusic" loop>
-  <source src="mystery_song.mp3" type="audio/mpeg">
+  <source src="song.mp3" type="audio/mpeg">
   Your browser does not support the audio tag.
 </audio>
 
 <script>
 const body = document.body;
 const clickText = document.querySelector('.click-text');
+const topText = document.getElementById('topText');
 const img = document.getElementById('magicImage');
-const credit = document.getElementById('creditText');
+const bottomText = document.getElementById('bottomText');
 const music = document.getElementById('bgmusic');
 
 body.addEventListener('click', () => {
-  // Show image and credit
+  topText.style.display = 'block';
   img.style.display = 'block';
-  credit.style.display = 'block';
-  // Hide click text
+  bottomText.style.display = 'block';
   clickText.style.display = 'none';
+
   // Try to play music
   music.play().catch(err => {
-    console.log("Autoplay blocked, user interaction needed:", err);
+    console.log("Autoplay blocked:", err);
   });
 }, { once: true });
 </script>

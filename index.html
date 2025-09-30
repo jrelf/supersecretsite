@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Click for Magic</title>
+<style>
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  text-align: center;
+}
+img {
+  max-width: 25%;
+  height: auto;
+  border-radius: 10px;
+  display: none; /* hidden initially */
+  margin-top: 20px;
+}
+.credit {
+  margin-top: 10px;
+  font-size: 0.9em;
+  opacity: 0.8;
+  display: none; /* hidden initially */
+}
+.click-text {
+  font-size: 1.5em;
+  opacity: 0.9;
+}
+</style>
+</head>
+<body>
+
+<div class="click-text">click to reveal secret.</div>
+
+<!-- Your hidden image and credit -->
+<img id="magicImage" src="mystery_croc.jpg" alt="Magic Picture">
+<div class="credit" id="creditText">"Don't worry, be happy" <br> made by jrel</div>
+
+<!-- Music -->
+<audio id="bgmusic" loop>
+  <source src="mystery_song.mp3" type="audio/mpeg">
+  Your browser does not support the audio tag.
+</audio>
+
+<script>
+const body = document.body;
+const clickText = document.querySelector('.click-text');
+const img = document.getElementById('magicImage');
+const credit = document.getElementById('creditText');
+const music = document.getElementById('bgmusic');
+
+body.addEventListener('click', () => {
+  // Show image and credit
+  img.style.display = 'block';
+  credit.style.display = 'block';
+  // Hide click text
+  clickText.style.display = 'none';
+  // Try to play music
+  music.play().catch(err => {
+    console.log("Autoplay blocked, user interaction needed:", err);
+  });
+}, { once: true });
+</script>
+
+</body>
+</html>
